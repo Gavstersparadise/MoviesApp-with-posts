@@ -1,0 +1,53 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @movie.title %>
+</p>
+
+<p>
+  <b>Poster:</b>
+  <%= @movie.poster %>
+</p>
+
+<p>
+  <b>Trailer:</b>
+  <%=sanitize @movie.trailer, :tags => ['iframe'] %> 
+</p>
+
+<p>
+  <b>Genre:</b>
+  <%= @movie.genre_id %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= euro(@movie.price)%>
+</p>
+
+<h2> please leave a comment</h2>
+	<%= form_for([@movie, Post.new]) do |f| %>
+	<%= f.text_area :content, :rows => 3 %>
+	<div class = "actions">
+		<%= f.submit "Post a comment" %>
+		</div>
+	<%end%>
+
+	<% if @movie.posts.empty? %>
+		<h3> You are the first to comment </h3>
+	<% else %>
+		<h2> What other people felt about this movie</h2>
+		<% @movie.posts.reverse.each do |post| %>
+			<p><%= post.content %>
+			Posted <%= time_ago_in_words(post.created_at) %> ago by
+				  <%= @current_user.name  %>  </p>
+				   
+		<%end%>
+	<%end%> 
+	
+
+	
+
+
+<%= link_to 'Edit', edit_movie_path(@movie) %> |
+<%= link_to 'Back', movies_path %>
