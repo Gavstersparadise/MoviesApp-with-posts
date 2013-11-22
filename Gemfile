@@ -18,9 +18,11 @@ group :assets do
   # gem 'therubyracer'
 
   gem 'uglifier', '>= 1.0.3'
-end
+  end
 
-gem 'jquery-rails'
+  gem 'jquery-rails', '2.0.2'
+
+  gem 'geocoder'
 
 # To use ActiveModel has_secure_password
  gem 'bcrypt-ruby', '~> 3.0.1'

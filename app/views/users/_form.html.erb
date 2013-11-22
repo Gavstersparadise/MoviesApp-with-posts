@@ -28,10 +28,14 @@
    <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+   <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
 
   <div class="field">
     <%= f.label :dob %><br />
-    <%= f.date_select :dob,{:start_year => 1920,:include_blank => true} %>
+    <%= f.text_field :dob, :id => :datepicker  %>
   </div>
   <div class="field">
     <%= f.label :sex %><br />

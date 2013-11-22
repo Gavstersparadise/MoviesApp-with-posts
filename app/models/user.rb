@@ -4,6 +4,10 @@ has_many :posts
 
  validates :email, :name, :dob, :photo, presence: true 
  validates :email, uniqueness: true, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/}  # make sure its unique 
+ geocoded_by :address
+ after_validation :geocode, :if => :address_changed?
+
+ 
  
  def username
      username = self.name + " " + self.email
